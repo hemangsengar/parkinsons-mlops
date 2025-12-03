@@ -12,7 +12,6 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Parkinson's Detection Space
     runs-on: ubuntu-latest
 
     steps:
@@ -31,11 +30,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install huggingface_hub[cli]
 
-    - name: Login to Hugging Face
-      uses: huggingface-cli/login@v1
-      with:
-        token: ${{ secrets.HF_TOKEN }}
-
     - name: Configure Git
       run: |
         git config --global user.email "github-actions@github.com"
@@ -48,11 +42,14 @@ jobs:
       run: |
         SPACE_NAME="${HF_USERNAME}/parkinsons-detection"
 
+        # Login to Hugging Face
+        python -c "from huggingface_hub import login; import os; login(os.environ['HF_TOKEN'], add_to_git_credential=True); print('✅ Logged in to Hugging Face')"
+
         # Clone the space
         git clone https://huggingface.co/spaces/$SPACE_NAME hf-space
         cd hf-space
 
-        # Copy files from root
+        # Copy files from repo root
         cp ../app.py .
         cp ../requirements.txt .
         cp ../model.pkl .
