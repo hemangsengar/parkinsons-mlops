@@ -50,13 +50,13 @@ jobs:
         git clone https://huggingface.co/spaces/$SPACE_NAME hf-space
         cd hf-space
 
-        # Copy only necessary files
+        # Copy only necessary files from root
         cp ../app.py .
         cp ../requirements.txt .
         cp ../model.pkl .
         cp ../README.md .
 
-        # Commit and push
+        # Commit and push if there are changes
         git add .
         if git diff --staged --quiet; then
           echo "ℹ️ No changes to deploy"
