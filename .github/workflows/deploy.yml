@@ -8,15 +8,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Deploy to Hugging Face Space
-      uses: huggingface/hub-action@v1
-      with:
-        repo-id: hena00/parkinsons-detection
-        repo-type: space
-        space-sdk: gradio
-        token: ${{ secrets.HF_TOKEN }}
+      - name: Sync to Hugging Face Space
+        uses: huggingface/space-ci@v1
+        with:
+          repo-token: ${{ secrets.HF_TOKEN }}
+          repo-id: hena00/parkinsons-detection
