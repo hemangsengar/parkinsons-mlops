@@ -1,9 +1,12 @@
 import joblib
+import yaml
 
 class ParkinsonModel:
-    def __init__(self, model_path="models/model.pkl"):
-        self.model = joblib.load(model_path)
+    def __init__(self, config_path="config/config.yaml"):
+        with open(config_path, "r") as f:
+            self.config = yaml.safe_load(f)
 
-    def predict(self, features):
-        return self.model.predict([features])[0]
+        self.model = joblib.load(self.config["model_path"])
 
+    def predict(self, df):
+        return self.model.predict(df)[0]
