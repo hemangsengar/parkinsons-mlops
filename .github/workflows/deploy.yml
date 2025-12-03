@@ -1,17 +1,16 @@
-
-name: Deploy to Hugging Face
+name: Deploy to Hugging Face Space
 
 on:
   push:
     branches:
-      - main  # or the branch you want to deploy from
+      - main  # Replace with the branch you want to deploy from
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -27,5 +26,5 @@ jobs:
       - name: Deploy to Hugging Face Space
         uses: huggingface/spaces-deploy@main
         with:
-          space: hena00/parkinsons-detection  # replace with your HF space name
+          space: hena00/parkinsons-detection  # Replace with your HF Space name
           token: ${{ secrets.HF_TOKEN }}
