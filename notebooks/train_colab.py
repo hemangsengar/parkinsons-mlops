@@ -1,6 +1,6 @@
 !pip install pandas numpy scikit-learn joblib
 from google.colab import files
-uploaded = files.upload()
+uploaded = files.upload()          #you can download parkinson's dataset from KAGGLE- https://www.kaggle.com/datasets/vikasukani/parkinsons-disease-data-set
 os.rename("parkinsons (1).data", "parkinsons.csv")
 import pandas as pd
 df = pd.read_csv("parkinsons.csv")
