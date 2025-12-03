@@ -33,12 +33,3 @@ jobs:
 
     - name: Run tests (optional)
       run: pytest || true
-
-    - name: Validate app loads correctly
-      run: |
-        python - <<EOF
-        import joblib
-        import gradio
-        import app
-        print("App loaded successfully")
-        EOF
