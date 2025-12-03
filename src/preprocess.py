@@ -1,5 +1,7 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+import joblib
 
-import numpy as np
-
-def preprocess_input(data_dict):
-    return np.array(list(data_dict.values()), dtype=float)
+def preprocess_input(data: dict, feature_list: list):
+    df = pd.DataFrame([data])[feature_list]
+    return df
