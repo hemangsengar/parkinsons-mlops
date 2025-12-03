@@ -10,21 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Deploy to Hugging Face Space
-        uses: huggingface/spaces-deploy@main
-        with:
-          space: hena00/parkinsons-detection
-          token: ${{ secrets.HF_TOKEN }}
+    - name: Deploy to Hugging Face Space
+      uses: huggingface/hub-action@v1
+      with:
+        repo-id: hena00/parkinsons-detection
+        repo-type: space
+        space-sdk: gradio
+        token: ${{ secrets.HF_TOKEN }}
