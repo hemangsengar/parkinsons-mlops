@@ -171,6 +171,10 @@ Required repository secrets:
 4. Remove `|| true` from CI to enforce quality gates
 5. Add model metrics/version metadata in repository
 
+## Author
+
+- GitHub: [@hemangsengar](https://github.com/hemangsengar)
+
 ## License
 
 No license file is currently included. Add a `LICENSE` file to define usage terms.
